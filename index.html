@@ -64,34 +64,35 @@
     <script type="text/babel">
         const { useState, useEffect, useCallback, useRef } = React;
 
-        // --- Custom SVG Icons (Replacing Lucide to fix errors) ---
+        // --- Custom SVG Icons (Wrapping with Fragment to fix SyntaxError) ---
         const Icon = ({ name, size = 24, className = "" }) => {
             const icons = {
-                ShoppingBag: <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>,
+                ShoppingBag: <><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></>,
                 ChevronRight: <path d="m9 18 6-6-6-6"/>,
-                X: <path d="M18 6 6 18"/><path d="m6 6 12 12"/>,
-                Trash2: <path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>,
-                CheckCircle2: <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>,
+                X: <><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>,
+                Trash2: <><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></>,
+                CheckCircle2: <><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></>,
                 MessageSquare: <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>,
-                Instagram: <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>,
-                Clock: <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>,
-                Mail: <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>,
+                Instagram: <><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>,
+                Clock: <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>,
+                Palette: <><path d="m19 8.5 2.8-2.8c.4-.4.4-1 0-1.4l-1.6-1.6c-.4-.4-1-.4-1.4 0L16 5.5"/><path d="m11 13.5 3-3.5 3 3.5c.5.5.5 1.5 0 2l-3 3.5c-.5.5-1.5.5-2 0l-3-3.5c-.5-.5-.5-1.5 0-2z"/><path d="M5 21c0-2 1.5-4 4-4"/><path d="M11 7c2-1 3-3 3-5"/><path d="M7 11c-1-2-3-3-5-3"/></>,
+                Mail: <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>,
                 Cloud: <path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.47-1.594-4.566-3.805-5.298C18.662 4.417 15.34 2 11.5 2 7.763 2 4.604 4.195 4.101 7.214 2.33 8.163 1 10.128 1 12.5 1 15.537 3.463 18 6.5 18"/>,
-                Sparkles: <path d="m12 3 1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>,
-                ArrowLeft: <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>,
-                ImageIcon: <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>,
-                Send: <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>,
-                Plus: <path d="M12 5v14"/><path d="M5 12h14"/>,
-                Info: <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>,
-                ShieldAlert: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M12 8v4"/><path d="M12 16h.01"/>,
-                FileText: <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/>,
+                Sparkles: <><path d="m12 3 1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></>,
+                ArrowLeft: <><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></>,
+                ImageIcon: <><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></>,
+                Send: <><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></>,
+                Plus: <><path d="M12 5v14"/><path d="M5 12h14"/></>,
+                Info: <><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></>,
+                ShieldAlert: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M12 8v4"/><path d="M12 16h.01"/></>,
+                FileText: <><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></>,
                 Facebook: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>,
                 Circle: <circle cx="12" cy="12" r="10"/>,
                 Heart: <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                    {icons[name]}
+                    {icons[name] || null}
                 </svg>
             );
         };
@@ -109,7 +110,7 @@
                 <div className="fixed pointer-events-none" style={{ left: `${x}%`, top: `${y}%`, zIndex: 40 }}>
                     {!isBurst ? (
                         <div className="animate-heart-rise-slow text-white drop-shadow-lg">
-                            <Icon name="Heart" size={35} className="fill-white/40" />
+                            <Icon name="Heart" size={35} className="fill-white/40 text-white/70" />
                         </div>
                     ) : (
                         <div className="relative flex items-center justify-center">
@@ -208,11 +209,11 @@
         };
 
         const PRODUCTS = [
-            { id: 1, name: 'Ocean Breeze', price: 25, sub: 'สไตล์ซัมเมอร์สดใส พร้อมไอคอนใต้ท้องทะเล', details: 'รวบรวมความสดใสของทะเล ทั้งน้องแมงกะพรุน ปลาดาว และมะพร้าวหอม ๆ เหมาะสำหรับรีวิวสินค้าบิวตี้หรือท่องเที่ยว', image: 'ocean-breeze.png' },
-            { id: 2, name: 'Minimal Orbit', price: 25, sub: 'ลายเส้นมินิมอลแบบอาร์ต ทันสมัย เรียบหรู', details: 'เน้นงานรูปทรงเรขาคณิตและดวงจันทร์ ให้ความรู้สึกพรีเมียม สวยเรียบแต่ดูมีอะไร น่าค้นหา', image: 'minimal-orbit.png' },
-            { id: 3, name: 'Butterfly Dream', price: 25, sub: 'ความหวานละมุนของผีเสื้อและประกายดาว', details: 'ดีไซน์ที่เน้นความนุ่มฟูและจินตนาการ ด้วยเหล่าผีเสื้อโบยบิน เสริมความหวานให้แบรนด์ดูละมุน', image: 'butterfly-dream.png' },
-            { id: 4, name: 'Oriental Zen', price: 25, sub: 'มนต์เสน่ห์แห่งตะวันออก สไตล์ญี่ปุ่น/จีน', details: 'งานประณีตที่มีทั้งนกกระเรียน ดอกซากุระ และโคมไฟ ให้ความรู้สึกมงคล คลาสสิก และทรงพลัง', image: 'oriental-zen.png' },
-            { id: 5, name: 'Cyber HUD', price: 25, sub: 'ล้ำยุคด้วยสไตล์ Tech และ UI สุดโมเดิร์น', details: 'กรอบภาพสไตล์ Cyberpunk พร้อมกราฟเสียงและเส้นคลื่นดิจิทัล สำหรับงานที่ต้องการความล้ำสมัย โดดเด่น', image: 'cyber-hud.png' }
+            { id: 1, name: 'Ocean Breeze', price: 25, sub: 'สไตล์ซัมเมอร์สดใส พร้อมไอคอนใต้ท้องทะเล', details: 'รวบรวมความสดใสของทะเล ทั้งน้องแมงกะพรุน ปลาดาว และมะพร้าวหอม ๆ เหมาะสำหรับรีวิวสินค้าบิวตี้หรือท่องเที่ยว', image1: 'ocean-breeze.png' },
+            { id: 2, name: 'Minimal Orbit', price: 25, sub: 'ลายเส้นมินิมอลแบบอาร์ต ทันสมัย เรียบหรู', details: 'เน้นงานรูปทรงเรขาคณิตและดวงจันทร์ ให้ความรู้สึกพรีเมียม สวยเรียบแต่ดูมีอะไร น่าค้นหา', image2: 'minimal-orbit.png' },
+            { id: 3, name: 'Butterfly Dream', price: 25, sub: 'ความหวานละมุนของผีเสื้อและประกายดาว', details: 'ดีไซน์ที่เน้นความนุ่มฟูและจินตนาการ ด้วยเหล่าผีเสื้อโบยบิน เสริมความหวานให้แบรนด์ดูละมุน', image3: 'butterfly-dream.png' },
+            { id: 4, name: 'Oriental Zen', price: 25, sub: 'มนต์เสน่ห์แห่งตะวันออก สไตล์ญี่ปุ่น/จีน', details: 'งานประณีตที่มีทั้งนกกระเรียน ดอกซากุระ และโคมไฟ ให้ความรู้สึกมงคล คลาสสิก และทรงพลัง', image4: 'oriental-zen.png' },
+            { id: 5, name: 'Cyber HUD', price: 25, sub: 'ล้ำยุคด้วยสไตล์ Tech และ UI สุดโมเดิร์น', details: 'กรอบภาพสไตล์ Cyberpunk พร้อมกราฟเสียงและเส้นคลื่นดิจิทัล สำหรับงานที่ต้องการความล้ำสมัย โดดเด่น', image5: 'cyber-hud.png' }
         ];
 
         // --- Main App Component ---
@@ -262,8 +263,8 @@
 
                     <main className="max-w-7xl mx-auto relative pt-32 pb-20 px-4">
                         {view === 'home' ? (
-                            <div className="space-y-32">
-                                <section className="max-w-4xl mx-auto text-center">
+                            <div className="space-y-32 text-center">
+                                <section className="max-w-4xl mx-auto">
                                     <div className="inline-flex items-center space-x-2 px-6 py-2 bg-white/60 backdrop-blur-md rounded-full text-[12px] uppercase tracking-[0.2em] mb-10 text-sky-700 font-bold border border-white/50 shadow-sm">
                                         <Icon name="Sparkles" size={14} className="mr-1" /><span>Ready-made & Custom Design</span>
                                     </div>
@@ -280,11 +281,11 @@
                                     <div className="text-center mb-16">
                                         <h3 className="text-3xl font-light mb-4 text-slate-800 tracking-tight text-center">Watermark Styles</h3>
                                         <p className="text-sky-600 font-serif italic text-lg text-center">เลือกสไตล์ที่ใช่ แบบที่ชอบได้เลย</p>
-                                        <div className="w-12 h-1 bg-sky-400/40 mx-auto mt-4 rounded-full text-center"></div>
+                                        <div className="w-12 h-1 bg-sky-400/40 mx-auto mt-4 rounded-full"></div>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                                         {PRODUCTS.map(p => (
-                                            <div key={p.id} className="group bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-sm hover:shadow-2xl hover:bg-white/90 transition-all border border-white/60 flex flex-col">
+                                            <div key={p.id} className="group bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-sm hover:shadow-2xl hover:bg-white/90 transition-all border border-white/60 flex flex-col text-left">
                                                 <div className="bg-white/40 aspect-square rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden group-hover:scale-95 transition-transform border border-sky-50/50 shadow-inner">
                                                     <img src={p.image} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-60" onError={(e) => { e.target.style.display = 'none'; }} />
                                                     <span className="text-sky-400/30 font-serif italic text-2xl -rotate-12 select-none tracking-widest font-bold uppercase text-center relative z-10">Sample Design</span>
@@ -293,7 +294,7 @@
                                                     </div>
                                                 </div>
                                                 <div className="flex justify-between items-center mb-3"><h4 className="text-xl font-medium text-slate-800">{p.name}</h4><span className="text-sky-600 font-serif text-2xl font-bold">฿{p.price}</span></div>
-                                                <p className="text-slate-600 text-sm mb-8 font-light flex-grow text-left">{p.sub}</p>
+                                                <p className="text-slate-600 text-sm mb-8 font-light flex-grow">{p.sub}</p>
                                                 <button onClick={() => addToCart(p)} className="w-full py-4 rounded-2xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-all shadow-lg active:scale-95">หยิบลงตะกร้าค่ะ</button>
                                             </div>
                                         ))}
@@ -329,8 +330,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3.5rem] p-10 flex flex-col justify-center shadow-sm">
-                                            <div className="flex items-center space-x-3 mb-8 px-4"><div className="p-2 bg-white/90 rounded-xl shadow-sm text-sky-500"><Icon name="Send" size={20} /></div><h4 className="text-sky-700 font-medium tracking-wide text-left">การส่งมอบงาน</h4></div>
+                                        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3.5rem] p-10 flex flex-col justify-center shadow-sm text-left">
+                                            <div className="flex items-center space-x-3 mb-8 px-4"><div className="p-2 bg-white/90 rounded-xl shadow-sm text-sky-500"><Icon name="Send" size={20} /></div><h4 className="text-sky-700 font-medium tracking-wide">การส่งมอบงาน</h4></div>
                                             <div className="p-12 bg-white/80 rounded-[2.5rem] shadow-sm flex items-center space-x-8 transition-all hover:shadow-md h-full">
                                                 <div className="p-4 bg-sky-100/50 rounded-2xl text-sky-600"><Icon name="Mail" size={28} /></div>
                                                 <div className="text-left">
@@ -360,12 +361,12 @@
                                             <div className="mt-8 md:mt-0 flex items-center space-x-3 bg-white/80 px-8 py-4 rounded-full relative z-10 border border-white font-bold shadow-sm"><span className="text-lg text-slate-700">@455poujr</span><Icon name="ChevronRight" size={20} className="text-sky-500" /></div>
                                         </a>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <a href="https://www.facebook.com/share/1EGV4WDLqi/" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6">
-                                                <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform"><Icon name="Facebook" size={32} /></div>
+                                            <a href="https://www.facebook.com/share/1EGV4WDLqi/" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6 text-left">
+                                                <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform shrink-0"><Icon name="Facebook" size={32} /></div>
                                                 <div className="text-left"><p className="text-[10px] font-bold text-slate-500 uppercase mb-1 text-left">Facebook Page</p><p className="text-slate-700 font-medium text-lg text-left">SweetiePie Sky</p></div>
                                             </a>
-                                            <a href="https://www.instagram.com/xiaobaoba289?igsh=bHV5YTlpZXB4cjdh" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6">
-                                                <div className="bg-purple-100 text-purple-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform"><Icon name="Instagram" size={32} /></div>
+                                            <a href="https://www.instagram.com/xiaobaoba289?igsh=bHV5YTlpZXB4cjdh" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6 text-left">
+                                                <div className="bg-purple-100 text-purple-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform shrink-0"><Icon name="Instagram" size={32} /></div>
                                                 <div className="text-left"><p className="text-[10px] font-bold text-slate-500 uppercase mb-1 text-left">Instagram</p><p className="text-slate-800 font-medium text-lg text-left">xiaobaoba289</p></div>
                                             </a>
                                         </div>
@@ -382,7 +383,10 @@
                                     <div className="space-y-4">
                                         {cart.map(item => (
                                             <div key={item.id} className="flex items-center justify-between p-6 bg-white/70 backdrop-blur-md rounded-[2.5rem] border border-white/50 shadow-sm">
-                                                <div className="flex items-center space-x-6"><div className={`w-16 h-16 rounded-2xl bg-white/40 flex items-center justify-center text-sky-400`}><Icon name="ImageIcon" size={24} /></div><div><p className="font-medium text-slate-800 text-lg text-left">{item.name}</p><p className="text-sky-600 font-serif italic font-bold text-left">฿{item.price}</p></div></div>
+                                                <div className="flex items-center space-x-6 text-left">
+                                                    <div className={`w-16 h-16 rounded-2xl bg-white/40 flex items-center justify-center text-sky-400 shrink-0`}><Icon name="ImageIcon" size={24} /></div>
+                                                    <div><p className="font-medium text-slate-800 text-lg">{item.name}</p><p className="text-sky-600 font-serif italic font-bold text-left">฿{item.price}</p></div>
+                                                </div>
                                                 <button onClick={() => removeFromCart(item.id)} className="p-3 text-slate-300 hover:text-rose-500 transition-all"><Icon name="Trash2" size={20} /></button>
                                             </div>
                                         ))}
@@ -422,17 +426,17 @@
                             <div className="absolute inset-0 bg-slate-900/15 backdrop-blur-md" onClick={() => setModalProduct(null)}></div>
                             <div className="bg-white/95 backdrop-blur-2xl rounded-[3.5rem] w-full max-w-4xl relative overflow-hidden shadow-2xl border border-white/50 flex flex-col md:flex-row animate-in zoom-in-95 duration-200">
                                 {/* Left Side: Design Preview */}
-                                <div className="w-full md:w-1/2 min-h-[350px] flex items-center justify-center border-b md:border-b-0 md:border-r border-white/50 bg-sky-50/50 relative overflow-hidden">
+                                <div className="w-full md:w-1/2 min-h-[350px] flex items-center justify-center border-b md:border-b-0 md:border-r border-white/50 bg-sky-50/50 relative overflow-hidden shrink-0">
                                     <img src={modalProduct.image} alt={modalProduct.name} className="absolute inset-0 w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none"><span className="text-sky-500/10 font-serif italic text-4xl tracking-widest transform -rotate-12 opacity-30 select-none uppercase text-center">Sample Design</span></div>
                                 </div>
                                 {/* Right Side: Product Details */}
-                                <div className="w-full md:w-1/2 p-12 flex flex-col text-left relative">
+                                <div className="w-full md:w-1/2 p-12 flex flex-col text-left relative overflow-y-auto">
                                     <button onClick={() => setModalProduct(null)} className="absolute top-8 right-8 p-2 bg-white/80 hover:bg-sky-50 rounded-full text-sky-400 shadow-sm transition-all hover:rotate-90 z-10"><Icon name="X" size={24} /></button>
                                     
                                     <div className="flex justify-between items-start mb-2">
                                         <h4 className="text-4xl font-medium text-slate-800 tracking-tight text-left">{modalProduct.name}</h4>
-                                        <div className="text-right">
+                                        <div className="text-right shrink-0">
                                             <p className="text-[11px] text-sky-500 font-bold uppercase tracking-widest mb-0 text-right">ราคาเริ่มต้น</p>
                                             <p className="text-4xl font-serif italic text-sky-500 font-bold tracking-tighter text-right">฿{modalProduct.price}</p>
                                         </div>
@@ -472,7 +476,7 @@
 
                     {toast && (
                         <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] bg-slate-800/90 backdrop-blur-md text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center space-x-3 border border-white/10 shadow-sky-200 animate-in slide-in-from-bottom-8 text-center">
-                            <Icon name="Sparkles" size={18} className="text-white" />
+                            <Icon name="Sparkles" size={18} className="text-white shrink-0" />
                             <span className="text-sm font-medium">{toast}</span>
                         </div>
                     )}
@@ -485,7 +489,7 @@
             );
         }
 
-        // Render the app securely
+        // Render the app securely once the DOM is ready
         const container = document.getElementById('root');
         const root = ReactDOM.createRoot(container);
         root.render(<App />);
