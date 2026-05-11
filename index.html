@@ -97,7 +97,7 @@
             );
         };
 
-        // --- Updated Products Data with .jpg extensions based on your folder image ---
+        // --- Products Data (Using .jpg for Previews to match folder) ---
         const PRODUCTS = [
             { id: 1, name: 'Ocean Breeze', price: 25, sub: 'สไตล์ซัมเมอร์สดใส พร้อมไอคอนใต้ท้องทะเล', details: 'รวบรวมความสดใสของทะเล ทั้งน้องแมงกะพรุน ปลาดาว และมะพร้าวหอม ๆ เหมาะสำหรับรีวิวสินค้าบิวตี้หรือท่องเที่ยว', image: 'ocean-breeze.jpg' },
             { id: 2, name: 'Minimal Orbit', price: 25, sub: 'ลายเส้นมินิมอลแบบอาร์ต ทันสมัย เรียบหรู', details: 'เน้นงานรูปทรงเรขาคณิตและดวงจันทร์ ให้ความรู้สึกพรีเมียม สวยเรียบแต่ดูมีอะไร น่าค้นหา', image: 'minimal-orbit.jpg' },
@@ -196,33 +196,33 @@
                 return () => { mountedRef.current = false; };
             }, []);
             return (
-                <div className="absolute right-20 bottom-0 w-24 h-14 flex items-end justify-end pointer-events-none overflow-visible">
+                <div className="absolute right-20 bottom-0 w-24 h-14 flex items-end justify-end pointer-events-none overflow-visible text-center">
                     <div className={`absolute bottom-2 text-sky-400/80 transition-all duration-[6000ms] ease-linear
-                        ${stage === 'sitting' ? 'right-[-150px] opacity-0' : 'right-[500px] opacity-100 rotate-[-1440deg]'}`}>
-                        <Icon name="Circle" size={12} className="fill-current" />
+                        ${stage === 'sitting' ? 'right-[-150px] opacity-0 text-center' : 'right-[500px] opacity-100 rotate-[-1440deg] text-center'}`}>
+                        <Icon name="Circle" size={12} className="fill-current text-center" />
                     </div>
-                    <div className={`relative transition-all duration-[4000ms] ease-in-out flex flex-col items-center
-                        ${stage === 'running' ? 'translate-x-[-450px] opacity-0' : 'translate-x-0 opacity-100'}`}>
+                    <div className={`relative transition-all duration-[4000ms] ease-in-out flex flex-col items-center text-center
+                        ${stage === 'running' ? 'translate-x-[-450px] opacity-0 text-center' : 'translate-x-0 opacity-100 text-center'}`}>
                         {stage !== 'hidden' && ( stage === 'running' ? (
-                            <svg width="48" height="40" viewBox="0 0 24 24" className="text-slate-700/20 fill-current animate-bounce-subtle transform scale-x-[-1]">
+                            <svg width="48" height="40" viewBox="0 0 24 24" className="text-slate-700/20 fill-current animate-bounce-subtle transform scale-x-[-1] text-center">
                                 <path d="M2 14c0-1.1.9-2 2-2h12c1.7 0 3 .9 3 2.5V17c0 .6-.4 1-1 1s-1-.4-1-1v-1.5c0-.3-.2-.5-.5-.5h-1c-.3 0-.5.2-.5.5V18c0 .6-.4 1-1 1s-1-.4-1-1v-2h-2v2c0 .6-.4 1-1 1s-1-.4-1-1v-2H6v2c0 .6-.4 1-1 1s-1-.4-1-1v-4z" />
                                 <circle cx="18" cy="11" r="3.5" />
                                 <path d="M17 9l-1-2.5 2.5 1.5zM21 9l1-2.5-2.5 1.5z" />
                             </svg>
                         ) : (
-                            <svg width="40" height="44" viewBox="0 0 24 24" className={`text-slate-700/20 fill-current transition-transform duration-700 ${stage === 'alert' ? 'scale-x-[-1]' : 'scale-x-1'}`}>
+                            <svg width="40" height="44" viewBox="0 0 24 24" className={`text-slate-700/20 fill-current transition-transform duration-700 text-center ${stage === 'alert' ? 'scale-x-[-1] text-center' : 'scale-x-1 text-center'}`}>
                                 <path d="M16 20c0 1.1-.9 2-2 2H10c-1.1 0-2-.9-2-2v-4c0-2.2 1.8-4 4-4s4 1.8 4 4v4z" />
-                                <g className={`transition-transform duration-300 ${stage === 'alert' ? '-translate-y-1 scale-110' : ''}`}>
+                                <g className={`transition-transform duration-300 text-center ${stage === 'alert' ? '-translate-y-1 scale-110 text-center' : 'text-center'}`}>
                                     <circle cx="12" cy="8" r="5" />
                                     <path d="M8.5 5l-2.5-3.5 3.5 2.5z" /><path d="M15.5 5l2.5-3.5-3.5 2.5z" />
                                 </g>
-                                <g className="animate-wiggle-tail" style={{ transformOrigin: '14px 18px' }}>
+                                <g className="animate-wiggle-tail text-center" style={{ transformOrigin: '14px 18px' }}>
                                     <path d="M14 18c2 2 4 1 4 4s-2 2-4 2" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                                 </g>
                             </svg>
                         ))}
-                        <div className={`absolute -top-10 left-0 bg-sky-500 text-white text-[10px] px-3 py-1.5 rounded-full shadow-lg font-bold transition-all duration-500 transform
-                            ${stage === 'alert' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>อุ๊ย! อะไรนะคะ</div>
+                        <div className={`absolute -top-10 left-0 bg-sky-500 text-white text-[10px] px-3 py-1.5 rounded-full shadow-lg font-bold transition-all duration-500 transform text-center
+                            ${stage === 'alert' ? 'scale-100 opacity-100 text-center' : 'scale-0 opacity-0 text-center'}`}>อุ๊ย! อะไรนะคะ</div>
                     </div>
                 </div>
             );
@@ -251,28 +251,28 @@
             const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
 
             return (
-                <div className="relative min-h-screen">
-                    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-[#f8fdff]">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/50 via-white to-sky-100/50 opacity-100"></div>
-                        <div className="absolute top-[-15%] left-[-10%] w-[100vw] h-[100vw] bg-sky-300/30 rounded-full mix-blend-multiply filter blur-[120px] animate-mesh-blob"></div>
-                        <div className="absolute top-[20%] right-[-15%] w-[80vw] h-[80vw] bg-blue-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-mesh-blob animation-delay-2000"></div>
-                        <div className="absolute bottom-[-10%] left-[10%] w-[90vw] h-[90vw] bg-white rounded-full mix-blend-overlay filter blur-[110px] animate-mesh-blob animation-delay-4000"></div>
+                <div className="relative min-h-screen selection:bg-sky-200 text-center">
+                    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-[#f8fdff] text-center">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/50 via-white to-sky-100/50 opacity-100 text-center"></div>
+                        <div className="absolute top-[-15%] left-[-10%] w-[100vw] h-[100vw] bg-sky-300/30 rounded-full mix-blend-multiply filter blur-[120px] animate-mesh-blob text-center"></div>
+                        <div className="absolute top-[20%] right-[-15%] w-[80vw] h-[80vw] bg-blue-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-mesh-blob animation-delay-2000 text-center"></div>
+                        <div className="absolute bottom-[-10%] left-[10%] w-[90vw] h-[90vw] bg-white rounded-full mix-blend-overlay filter blur-[110px] animate-mesh-blob animation-delay-4000 text-center"></div>
                     </div>
                     <HeartSystem />
                     
-                    <nav className="fixed top-0 w-full bg-white/40 backdrop-blur-xl z-50 border-b border-white/40 h-20 shadow-sm px-6">
-                        <div className="max-w-6xl mx-auto h-full flex items-center justify-between relative">
-                            <div className="flex items-center space-x-2 cursor-pointer group" onClick={() => { setView('home'); window.scrollTo(0,0); }}>
-                                <div className="bg-white/80 p-2 rounded-xl shadow-md text-sky-500 group-hover:scale-110 transition-transform">
-                                    <Icon name="Cloud" size={24} />
+                    <nav className="fixed top-0 w-full bg-white/40 backdrop-blur-xl z-50 border-b border-white/40 h-20 shadow-sm px-6 text-center">
+                        <div className="max-w-6xl mx-auto h-full flex items-center justify-between relative text-center">
+                            <div className="flex items-center space-x-2 cursor-pointer group text-center" onClick={() => { setView('home'); window.scrollTo(0,0); }}>
+                                <div className="bg-white/80 p-2 rounded-xl shadow-md text-sky-500 group-hover:scale-110 transition-transform text-center">
+                                    <Icon name="Cloud" size={24} className="text-center" />
                                 </div>
-                                <h1 className="text-xl font-medium tracking-tight text-slate-800">Sweetiepie <span className="font-serif italic text-sky-500">Shop</span></h1>
+                                <h1 className="text-xl font-medium tracking-tight text-slate-800 text-center">Sweetiepie <span className="font-serif italic text-sky-500 text-center">Shop</span></h1>
                             </div>
-                            <div className="flex items-center space-x-6 relative">
+                            <div className="flex items-center space-x-6 relative text-center">
                                 <CatShadowAnimation />
-                                <button onClick={() => { setView('cart'); window.scrollTo(0,0); }} className="relative p-3 hover:bg-white/60 rounded-full transition-all text-slate-700 hover:text-sky-600 z-10">
-                                    <Icon name="ShoppingBag" size={24} />
-                                    {cart.length > 0 && <span className="absolute top-1 right-1 bg-sky-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white animate-bounce shadow-sm">{cart.length}</span>}
+                                <button onClick={() => { setView('cart'); window.scrollTo(0,0); }} className="relative p-3 hover:bg-white/60 rounded-full transition-all text-slate-700 hover:text-sky-600 z-10 text-center">
+                                    <Icon name="ShoppingBag" size={24} className="text-center" />
+                                    {cart.length > 0 && <span className="absolute top-1 right-1 bg-sky-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white animate-bounce shadow-sm text-center">{cart.length}</span>}
                                 </button>
                             </div>
                         </div>
@@ -280,291 +280,283 @@
 
                     <main className="max-w-7xl mx-auto relative pt-32 pb-20 px-4 text-center">
                         {view === 'home' ? (
-                            <div className="space-y-32">
-                                <section className="max-w-4xl mx-auto text-center">
-                                    <div className="inline-flex items-center space-x-2 px-6 py-2 bg-white/60 backdrop-blur-md rounded-full text-[12px] uppercase tracking-[0.2em] mb-10 text-sky-700 font-bold border border-white/50 shadow-sm mx-auto">
-                                        <Icon name="Sparkles" size={14} className="mr-1" /><span>Ready-made & Custom Design</span>
+                            <div className="space-y-32 text-center text-center">
+                                <section className="max-w-4xl mx-auto text-center text-center">
+                                    <div className="inline-flex items-center space-x-2 px-6 py-2 bg-white/60 backdrop-blur-md rounded-full text-[12px] uppercase tracking-[0.2em] mb-10 text-sky-700 font-bold border border-white/50 shadow-sm mx-auto text-center">
+                                        <Icon name="Sparkles" size={14} className="mr-1 text-center" /><span>Ready-made & Custom Design</span>
                                     </div>
-                                    <h2 className="text-6xl md:text-8xl font-light mb-10 tracking-tighter text-slate-900 drop-shadow-md text-center">Sweetiepie <span className="italic font-serif text-sky-500/80">Shop</span></h2>
-                                    <p className="text-slate-700 max-w-3xl mx-auto mb-14 leading-relaxed font-light text-xl text-balance text-center">ประทับความเป็นเจ้าของผลงานของคุณให้ดูละมุนและมีเอกลักษณ์เฉพาะตัว <br/> ด้วยลายน้ำที่มีให้เลือกทั้งแบบ <span className="text-sky-600 font-medium italic">สำเร็จรูป</span> และ <span className="text-sky-600 font-medium italic">งานออกแบบใหม่</span> ค่ะ 💙</p>
+                                    <h2 className="text-6xl md:text-8xl font-light mb-10 tracking-tighter text-slate-900 drop-shadow-md text-center text-center">Sweetiepie <span className="italic font-serif text-sky-500/80 text-center text-center">Shop</span></h2>
+                                    <p className="text-slate-700 max-w-3xl mx-auto mb-14 leading-relaxed font-light text-xl text-balance text-center text-center text-center">ประทับความเป็นเจ้าของผลงานของคุณให้ดูละมุนและมีเอกลักษณ์เฉพาะตัว <br/> ด้วยลายน้ำที่มีให้เลือกทั้งแบบ <span className="text-sky-600 font-medium italic text-center">สำเร็จรูป</span> และ <span className="text-sky-600 font-medium italic text-center">งานออกแบบใหม่</span> ค่ะ 💙</p>
                                     <div className="flex justify-center text-center">
-                                        <a href="https://lin.ee/7Bga3bbv" target="_blank" className="bg-sky-500 text-white px-12 py-5 rounded-full text-lg font-bold hover:bg-sky-600 transition-all shadow-xl active:scale-95 inline-flex items-center space-x-2">
-                                            <Icon name="MessageSquare" size={20} /><span>ติดต่อสอบถาม</span>
+                                        <a href="https://lin.ee/7Bga3bbv" target="_blank" className="bg-sky-500 text-white px-12 py-5 rounded-full text-lg font-bold hover:bg-sky-600 transition-all shadow-xl active:scale-95 inline-flex items-center space-x-2 text-center text-center">
+                                            <Icon name="MessageSquare" size={20} className="text-center" /><span>ติดต่อสอบถาม</span>
                                         </a>
                                     </div>
                                 </section>
 
-                                <section id="shop" className="max-w-6xl mx-auto pt-20 relative z-10 text-center">
-                                    <div className="text-center mb-16">
-                                        <h3 className="text-3xl font-light mb-4 text-slate-800 tracking-tight">Watermark Styles</h3>
-                                        <p className="text-sky-600 font-serif italic text-lg">เลือกสไตล์ที่ใช่ แบบที่ชอบได้เลย</p>
-                                        <div className="w-12 h-1 bg-sky-400/40 mx-auto mt-4 rounded-full"></div>
+                                <section id="shop" className="max-w-6xl mx-auto pt-20 relative z-10 text-center text-center">
+                                    <div className="text-center mb-16 text-center text-center">
+                                        <h3 className="text-3xl font-light mb-4 text-slate-800 tracking-tight text-center text-center">Watermark Styles</h3>
+                                        <p className="text-sky-600 font-serif italic text-lg text-center text-center">เลือกสไตล์ที่ใช่ แบบที่ชอบได้เลย</p>
+                                        <div className="w-12 h-1 bg-sky-400/40 mx-auto mt-4 rounded-full text-center text-center"></div>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center text-center">
                                         {PRODUCTS.map(p => (
                                             <div key={p.id} className="group bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-sm hover:shadow-2xl hover:bg-white/90 transition-all border border-white/60 flex flex-col text-left">
-                                                <div className="bg-white/40 aspect-square rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden group-hover:scale-95 transition-transform border border-sky-50/50 shadow-inner text-center">
-                                                    <SafeImage src={p.image} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-                                                    <span className="text-sky-400/30 font-serif italic text-2xl -rotate-12 select-none tracking-widest font-bold uppercase text-center relative z-10 text-center">Sample Design</span>
-                                                    <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all z-20">
-                                                        <button onClick={() => setModalProduct(p)} className="bg-white/95 text-sky-600 px-6 py-3 rounded-full text-xs font-bold shadow-md hover:bg-sky-50 text-center">ดูรายละเอียด</button>
+                                                <div className="bg-white/40 aspect-square rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden group-hover:scale-95 transition-transform border border-sky-50/50 shadow-inner text-center text-center">
+                                                    <SafeImage src={p.image} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-60 text-center" />
+                                                    <span className="text-sky-400/30 font-serif italic text-2xl -rotate-12 select-none tracking-widest font-bold uppercase text-center relative z-10 text-center text-center">Sample Design</span>
+                                                    <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all z-20 text-center text-center">
+                                                        <button onClick={() => setModalProduct(p)} className="bg-white/95 text-sky-600 px-6 py-3 rounded-full text-xs font-bold shadow-md hover:bg-sky-50 text-center text-center">ดูรายละเอียด</button>
                                                     </div>
                                                 </div>
-                                                <div className="flex justify-between items-center mb-3"><h4 className="text-xl font-medium text-slate-800">{p.name}</h4><span className="text-sky-600 font-serif text-2xl font-bold">฿{p.price}</span></div>
-                                                <p className="text-slate-600 text-sm mb-8 font-light flex-grow">{p.sub}</p>
-                                                {/* Button Text: "ใส่รถเข็น" as per image brief */}
-                                                <button onClick={() => addToCart(p)} className="w-full py-4 rounded-2xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-all shadow-lg active:scale-95 text-center">ใส่รถเข็น</button>
+                                                <div className="flex justify-between items-center mb-3 text-left text-left"><h4 className="text-xl font-medium text-slate-800 text-left text-left">{p.name}</h4><span className="text-sky-600 font-serif text-2xl font-bold text-center text-center">฿{p.price}</span></div>
+                                                <p className="text-slate-600 text-sm mb-8 font-light flex-grow text-left text-left text-left">{p.sub}</p>
+                                                <button onClick={() => addToCart(p)} className="w-full py-4 rounded-2xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-all shadow-lg active:scale-95 text-center text-center text-center">ใส่รถเข็น</button>
                                             </div>
                                         ))}
-                                        <div className="bg-white/20 backdrop-blur-sm rounded-[3rem] p-8 border-2 border-dashed border-white/40 flex flex-col items-center justify-center text-center opacity-60 min-h-[400px]">
-                                            <div className="bg-white/80 p-6 rounded-full shadow-sm text-sky-300 transition-transform hover:scale-110 cursor-pointer mx-auto">
-                                                <Icon name="Plus" size={32} />
+                                        <div className="bg-white/20 backdrop-blur-sm rounded-[3rem] p-8 border-2 border-dashed border-white/40 flex flex-col items-center justify-center text-center opacity-60 min-h-[400px] text-center text-center">
+                                            <div className="bg-white/80 p-6 rounded-full shadow-sm text-sky-300 transition-transform hover:scale-110 cursor-pointer text-center text-center">
+                                                <Icon name="Plus" size={32} className="text-center text-center" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="mt-24 text-center">
+                                    <div className="mt-24 text-center text-center text-center">
                                         <button 
                                             onClick={() => { setView('all-products'); window.scrollTo(0,0); }}
-                                            className="inline-flex items-center space-x-2 text-sky-600 font-medium hover:text-sky-800 group transition-all mx-auto text-center"
+                                            className="inline-flex items-center space-x-2 text-sky-600 font-medium hover:text-sky-800 group transition-all mx-auto text-center text-center"
                                         >
-                                            <span className="border-b-2 border-transparent group-hover:border-sky-600 pb-1 text-2xl font-bold">ดูเพิ่มเติม</span>
-                                            <Icon name="ChevronRight" size={28} className="group-hover:translate-x-2 transition-transform" />
+                                            <span className="border-b-2 border-transparent group-hover:border-sky-600 pb-1 text-2xl font-bold text-center text-center">ดูเพิ่มเติม</span>
+                                            <Icon name="ChevronRight" size={28} className="group-hover:translate-x-2 transition-transform text-center text-center" />
                                         </button>
                                     </div>
                                 </section>
 
-                                <section className="max-w-6xl mx-auto space-y-12 pb-24 text-center">
-                                    <div className="text-center"><h3 className="text-4xl font-light text-slate-800 tracking-tight">Conditions & Rules</h3><div className="w-12 h-1 bg-sky-300/40 mx-auto mt-4 rounded-full"></div></div>
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-                                        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3.5rem] p-10 flex flex-col justify-center shadow-sm text-left">
-                                            <div className="flex items-center space-x-3 mb-8 px-4 text-left"><div className="p-2 bg-white/90 rounded-xl shadow-sm text-sky-500"><Icon name="FileText" size={20} /></div><h4 className="text-sky-700 font-medium tracking-wide">ขั้นตอนการทำงาน</h4></div>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
-                                                <div className="p-8 bg-white/70 rounded-[2.5rem] shadow-sm hover:shadow-md transition-all">
-                                                    <div className="w-12 h-12 bg-sky-100/50 rounded-2xl flex items-center justify-center mx-auto text-sky-600 mb-4"><Icon name="Clock" size={24} /></div>
-                                                    <h5 className="font-medium text-slate-800 mb-2">ระยะเวลาทำงาน</h5>
-                                                    <p className="text-[13px] text-slate-600 leading-relaxed text-center">ปกติจัดส่งภายใน 24 ชม. ค่ะ <br />ถ้าออกแบบใหม่ได้ภายใน 48 ชม. ค่ะ</p>
+                                <section className="max-w-6xl mx-auto space-y-12 pb-24 text-center text-center">
+                                    <div className="text-center text-center"><h3 className="text-4xl font-light text-slate-800 tracking-tight text-center text-center">Conditions & Rules</h3><div className="w-12 h-1 bg-sky-300/40 mx-auto mt-4 rounded-full text-center text-center"></div></div>
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch text-center">
+                                        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3.5rem] p-10 flex flex-col justify-center shadow-sm text-center">
+                                            <div className="flex items-center space-x-3 mb-8 px-4 text-left text-left text-left"><div className="p-2 bg-white/90 rounded-xl shadow-sm text-sky-500 text-center text-center"><Icon name="FileText" size={20} className="text-center text-center" /></div><h4 className="text-sky-700 font-medium tracking-wide text-left text-left">ขั้นตอนการทำงาน</h4></div>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center text-center">
+                                                <div className="p-8 bg-white/70 rounded-[2.5rem] shadow-sm hover:shadow-md transition-all text-center text-center">
+                                                    <div className="w-12 h-12 bg-sky-100/50 rounded-2xl flex items-center justify-center mx-auto text-sky-600 mb-4 text-center text-center"><Icon name="Clock" size={24} className="text-center text-center" /></div>
+                                                    <h5 className="font-medium text-slate-800 mb-2 text-center text-center">ระยะเวลาทำงาน</h5>
+                                                    <p className="text-[13px] text-slate-600 leading-relaxed text-center text-center">ปกติจัดส่งภายใน 24 ชม. ค่ะ <br />ถ้าออกแบบใหม่ได้ภายใน 48 ชม. ค่ะ</p>
                                                 </div>
-                                                <div className="p-8 bg-white/70 rounded-[2.5rem] shadow-sm hover:shadow-md transition-all">
-                                                    <div className="w-12 h-12 bg-sky-100/50 rounded-2xl flex items-center justify-center mx-auto text-sky-600 mb-4"><Icon name="Palette" size={24} /></div>
-                                                    <h5 className="font-medium text-slate-800 mb-2">การแก้ไขงาน</h5>
-                                                    <p className="text-[13px] text-slate-600 leading-relaxed">แก้ไขได้ตามเงื่อนไขแพ็กเกจนะคะ</p>
+                                                <div className="p-8 bg-white/70 rounded-[2.5rem] shadow-sm hover:shadow-md transition-all text-center text-center">
+                                                    <div className="w-12 h-12 bg-sky-100/50 rounded-2xl flex items-center justify-center mx-auto text-sky-600 mb-4 text-center text-center"><Icon name="Palette" size={24} className="text-center text-center" /></div>
+                                                    <h5 className="font-medium text-slate-800 mb-2 text-center text-center">การแก้ไขงาน</h5>
+                                                    <p className="text-[13px] text-slate-600 leading-relaxed text-center text-center">แก้ไขได้ตามเงื่อนไขแพ็กเกจนะคะ</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3.5rem] p-10 flex flex-col justify-center shadow-sm text-left">
-                                            <div className="flex items-center space-x-3 mb-8 px-4 text-left"><div className="p-2 bg-white/90 rounded-xl shadow-sm text-sky-500"><Icon name="Send" size={20} /></div><h4 className="text-sky-700 font-medium tracking-wide">การส่งมอบงาน</h4></div>
-                                            <div className="p-12 bg-white/80 rounded-[2.5rem] shadow-sm flex items-center space-x-8 transition-all hover:shadow-md h-full text-left">
-                                                <div className="p-4 bg-sky-100/50 rounded-2xl text-sky-600"><Icon name="Mail" size={28} /></div>
-                                                <div>
-                                                    <h5 className="font-medium text-slate-800 mb-1 font-serif italic text-lg text-left">การรับไฟล์งาน</h5>
-                                                    <p className="text-[14px] text-slate-600 leading-relaxed">ส่งเป็นไฟล์ PNG พื้นหลังใส คมชัด <br /> ทาง Line หรือ Email นะคะ</p>
+                                        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3.5rem] p-10 flex flex-col justify-center shadow-sm text-left text-left">
+                                            <div className="flex items-center space-x-3 mb-8 px-4 text-left text-left"><div className="p-2 bg-white/90 rounded-xl shadow-sm text-sky-500 text-center text-center"><Icon name="Send" size={20} className="text-center text-center" /></div><h4 className="text-sky-700 font-medium tracking-wide text-left text-left">การส่งมอบงาน</h4></div>
+                                            <div className="p-12 bg-white/80 rounded-[2.5rem] shadow-sm flex items-center space-x-8 transition-all hover:shadow-md h-full text-left text-left">
+                                                <div className="p-4 bg-sky-100/50 rounded-2xl text-sky-600 text-center text-center"><Icon name="Mail" size={28} className="text-center text-center" /></div>
+                                                <div className="text-left text-left">
+                                                    <h5 className="font-medium text-slate-800 mb-1 font-serif italic text-lg text-left text-left text-left">การรับไฟล์งาน</h5>
+                                                    <p className="text-[14px] text-slate-600 leading-relaxed text-left text-left">ส่งเป็นไฟล์ PNG พื้นหลังใส คมชัด <br /> ทาง Line หรือ Email นะคะ</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="pt-24 pb-12 mx-auto max-w-4xl text-center">
-                                        <div className="p-12 bg-white/60 backdrop-blur-xl rounded-[4rem] border-2 border-dashed border-white/80 shadow-2xl relative group overflow-hidden flex flex-col items-center">
-                                            <div className="absolute -right-6 -bottom-6 text-sky-200/10 group-hover:scale-110 transition-transform duration-700"><Icon name="ShieldAlert" size={160} /></div>
-                                            <div className="inline-flex items-center space-x-2 bg-sky-100/60 px-6 py-2 rounded-full mb-8 relative z-10 border border-sky-200">
-                                                <Icon name="Info" size={14} className="text-sky-600" /><p className="text-sky-700 font-bold tracking-[0.3em] text-[10px] uppercase">Important Reminder</p>
+                                    <div className="pt-24 pb-12 mx-auto max-w-4xl text-center text-center">
+                                        <div className="p-12 bg-white/60 backdrop-blur-xl rounded-[4rem] border-2 border-dashed border-white/80 shadow-2xl relative group overflow-hidden flex flex-col items-center text-center text-center">
+                                            <div className="absolute -right-6 -bottom-6 text-sky-200/10 group-hover:scale-110 transition-transform duration-700 text-center text-center"><Icon name="ShieldAlert" size={160} className="text-center text-center" /></div>
+                                            <div className="inline-flex items-center space-x-2 bg-sky-100/60 px-6 py-2 rounded-full mb-8 relative z-10 border border-sky-200 text-center text-center">
+                                                <Icon name="Info" size={14} className="text-sky-600 text-center text-center" /><p className="text-sky-700 font-bold tracking-[0.3em] text-[10px] uppercase text-center text-center">Important Reminder</p>
                                             </div>
-                                            <p className="text-slate-800 font-light italic text-2xl md:text-3xl leading-relaxed relative z-10 drop-shadow-sm text-center">"รบกวนแจ้งโอนเงินก่อนเริ่มคิวงานทุกเคสนะคะ <br className="hidden md:block" /> ขอบคุณมากๆ ค่ะ ✨"</p>
+                                            <p className="text-slate-800 font-light italic text-2xl md:text-3xl leading-relaxed relative z-10 drop-shadow-sm text-center text-center text-center">"รบกวนแจ้งโอนเงินก่อนเริ่มคิวงานทุกเคสนะคะ <br className="hidden md:block text-center text-center" /> ขอบคุณมากๆ ค่ะ ✨"</p>
                                         </div>
                                     </div>
                                 </section>
                                 
-                                <section className="pt-32 pb-24 text-center">
-                                    <h3 className="text-3xl font-light text-slate-800 italic font-serif mb-16 underline decoration-sky-100 underline-offset-8">Contact Us</h3>
-                                    <div className="max-w-4xl mx-auto px-4 space-y-6 relative z-10 mx-auto text-center">
-                                        <a href="https://lin.ee/O1Av0DE" target="_blank" className="flex flex-col md:flex-row items-center justify-between p-10 bg-white/70 backdrop-blur-md rounded-[3.5rem] border-2 border-white/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group relative overflow-hidden text-left">
-                                            <div className="absolute top-0 right-0 p-8 text-sky-200/20 group-hover:scale-110 transition-transform text-center"><Icon name="MessageSquare" size={120} /></div>
-                                            <div className="flex items-center space-x-8 relative z-10 text-left"><div className="bg-sky-500 text-white p-6 rounded-[2.5rem] shadow-lg group-hover:rotate-6 transition-transform text-center"><Icon name="MessageSquare" size={40} /></div><div className="text-left"><span className="inline-block px-3 py-1 bg-white text-sky-600 rounded-full text-[10px] font-bold uppercase mb-2 shadow-sm">Line Official</span><h4 className="text-2xl font-medium text-slate-800 text-left">ติดต่อสอบถาม</h4><p className="text-slate-600 font-light text-sm text-balance text-left">แอดมาสั่งงานหรือสอบถามได้รวดเร็วที่สุดค่ะ</p></div></div>
-                                            <div className="mt-8 md:mt-0 flex items-center space-x-3 bg-white/80 px-8 py-4 rounded-full relative z-10 border border-white font-bold shadow-sm text-center"><span className="text-lg text-slate-700">@455poujr</span><Icon name="ChevronRight" size={20} className="text-sky-500" /></div>
+                                <section className="pt-32 pb-24 text-center text-center text-center">
+                                    <h3 className="text-3xl font-light text-slate-800 italic font-serif mb-16 underline decoration-sky-100 underline-offset-8 text-center text-center">Contact Us</h3>
+                                    <div className="max-w-4xl mx-auto px-4 space-y-6 relative z-10 mx-auto text-center text-center">
+                                        <a href="https://lin.ee/O1Av0DE" target="_blank" className="flex flex-col md:flex-row items-center justify-between p-10 bg-white/70 backdrop-blur-md rounded-[3.5rem] border-2 border-white/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group relative overflow-hidden text-left text-left">
+                                            <div className="absolute top-0 right-0 p-8 text-sky-200/20 group-hover:scale-110 transition-transform text-center text-center text-center"><Icon name="MessageSquare" size={120} className="text-center text-center" /></div>
+                                            <div className="flex items-center space-x-8 relative z-10 text-left text-left"><div className="bg-sky-500 text-white p-6 rounded-[2.5rem] shadow-lg group-hover:rotate-6 transition-transform text-center text-center"><Icon name="MessageSquare" size={40} className="text-center text-center" /></div><div className="text-left text-left"><span className="inline-block px-3 py-1 bg-white text-sky-600 rounded-full text-[10px] font-bold uppercase mb-2 shadow-sm text-center text-center">Line Official</span><h4 className="text-2xl font-medium text-slate-800 text-left text-left">ติดต่อสอบถาม</h4><p className="text-slate-600 font-light text-sm text-balance text-left text-center">แอดมาสั่งงานหรือสอบถามได้รวดเร็วที่สุดค่ะ</p></div></div>
+                                            <div className="mt-8 md:mt-0 flex items-center space-x-3 bg-white/80 px-8 py-4 rounded-full relative z-10 border border-white font-bold shadow-sm text-center text-center text-center"><span className="text-lg text-slate-700 text-center text-center">@455poujr</span><Icon name="ChevronRight" size={20} className="text-sky-500 text-center text-center" /></div>
                                         </a>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
-                                            <a href="https://www.facebook.com/share/1EGV4WDLqi/" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6 text-left">
-                                                <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform shrink-0"><Icon name="Facebook" size={32} /></div>
-                                                <div className="text-left"><p className="text-[10px] font-bold text-slate-500 uppercase mb-1">Facebook Page</p><p className="text-slate-700 font-medium text-lg">SweetiePie Sky</p></div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto text-left text-left">
+                                            <a href="https://www.facebook.com/share/1EGV4WDLqi/" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6 text-left text-left">
+                                                <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform shrink-0 text-center text-center"><Icon name="Facebook" size={32} className="text-center text-center" /></div>
+                                                <div className="text-left text-left text-left"><p className="text-[10px] font-bold text-slate-500 uppercase mb-1 text-left text-left">Facebook Page</p><p className="text-slate-700 font-medium text-lg text-left text-left text-left">SweetiePie Sky</p></div>
                                             </a>
-                                            <a href="https://www.instagram.com/xiaobaoba289?igsh=bHV5YTlpZXB4cjdh" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6 text-left">
-                                                <div className="bg-purple-100 text-purple-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform shrink-0"><Icon name="Instagram" size={32} /></div>
-                                                <div className="text-left"><p className="text-[10px] font-bold text-slate-500 uppercase mb-1 text-left">Instagram</p><p className="text-slate-800 font-medium text-lg">xiaobaoba289</p></div>
+                                            <a href="https://www.instagram.com/xiaobaoba289?igsh=bHV5YTlpZXB4cjdh" target="_blank" className="p-8 bg-white/70 backdrop-blur-md rounded-[3rem] border border-white/50 shadow-sm hover:shadow-xl transition-all group flex items-center space-x-6 text-left text-left">
+                                                <div className="bg-purple-100 text-purple-600 p-4 rounded-2xl group-hover:rotate-6 transition-transform shrink-0 text-center text-center"><Icon name="Instagram" size={32} className="text-center text-center" /></div>
+                                                <div className="text-left text-left text-left"><p className="text-[10px] font-bold text-slate-500 uppercase mb-1 text-left text-left">Instagram</p><p className="text-slate-800 font-medium text-lg text-left text-left text-left text-left">xiaobaoba289</p></div>
                                             </a>
                                         </div>
                                     </div>
                                 </section>
                             </div>
                         ) : view === 'all-products' ? (
-                            <div className="space-y-16 animate-in fade-in duration-500 text-center">
-                                <button onClick={() => { setView('home'); window.scrollTo(0,0); }} className="mb-12 flex items-center text-sky-700 font-medium hover:translate-x-[-4px] transition-all mx-auto">
-                                    <Icon name="ArrowLeft" size={18} className="mr-2" /> กลับหน้าหลัก
+                            <div className="space-y-16 animate-in fade-in duration-500 text-center text-center">
+                                <button onClick={() => { setView('home'); window.scrollTo(0,0); }} className="mb-12 flex items-center text-sky-700 font-medium hover:translate-x-[-4px] transition-all mx-auto text-center text-center">
+                                    <Icon name="ArrowLeft" size={18} className="mr-2 text-center text-center" /> กลับหน้าหลัก
                                 </button>
-                                <div className="text-center">
-                                    <h3 className="text-5xl font-light mb-4 text-slate-800 tracking-tight">ลายน้ำทั้งหมด</h3>
-                                    <p className="text-sky-600 font-serif italic text-lg">ค้นหาดีไซน์ที่ประทับใจคุณ</p>
-                                    <div className="w-16 h-1 bg-sky-400/40 mx-auto mt-4 rounded-full text-center"></div>
+                                <div className="text-center text-center">
+                                    <h3 className="text-5xl font-light mb-4 text-slate-800 tracking-tight text-center text-center">ลายน้ำทั้งหมด</h3>
+                                    <p className="text-sky-600 font-serif italic text-lg text-center text-center">ค้นหาดีไซน์ที่ประทับใจคุณ</p>
+                                    <div className="w-16 h-1 bg-sky-400/40 mx-auto mt-4 rounded-full text-center text-center"></div>
                                 </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center text-center">
                                     {PRODUCTS.map(p => (
                                         <div key={p.id} className="group bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-sm hover:shadow-2xl hover:bg-white/90 transition-all border border-white/60 flex flex-col text-left">
-                                            <div className="bg-white/40 aspect-square rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden group-hover:scale-95 transition-transform border border-sky-50/50 shadow-inner">
-                                                <SafeImage src={p.image} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-                                                <span className="text-sky-400/30 font-serif italic text-2xl -rotate-12 select-none tracking-widest font-bold uppercase text-center relative z-10 text-center">Sample Design</span>
-                                                <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all z-20">
-                                                    <button onClick={() => setModalProduct(p)} className="bg-white/95 text-sky-600 px-6 py-3 rounded-full text-xs font-bold shadow-md hover:bg-sky-50 text-center">ดูรายละเอียด</button>
+                                            <div className="bg-white/40 aspect-square rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden group-hover:scale-95 transition-transform border border-sky-50/50 shadow-inner text-center text-center">
+                                                <SafeImage src={p.image} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-60 text-center text-center" />
+                                                <span className="text-sky-400/30 font-serif italic text-2xl -rotate-12 select-none tracking-widest font-bold uppercase text-center relative z-10 text-center text-center">Sample Design</span>
+                                                <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all z-20 text-center text-center">
+                                                    <button onClick={() => setModalProduct(p)} className="bg-white/95 text-sky-600 px-6 py-3 rounded-full text-xs font-bold shadow-md hover:bg-sky-50 text-center text-center">ดูรายละเอียด</button>
                                                 </div>
                                             </div>
-                                            <div className="flex justify-between items-center mb-3"><h4 className="text-xl font-medium text-slate-800">{p.name}</h4><span className="text-sky-600 font-serif text-2xl font-bold">฿{p.price}</span></div>
-                                            <p className="text-slate-600 text-sm mb-8 font-light flex-grow">{p.sub}</p>
-                                            <button onClick={() => addToCart(p)} className="w-full py-4 rounded-2xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-all shadow-lg active:scale-95 text-center">ใส่รถเข็น</button>
+                                            <div className="flex justify-between items-center mb-3 text-left text-left"><h4 className="text-xl font-medium text-slate-800 text-left text-left">{p.name}</h4><span className="text-sky-600 font-serif text-2xl font-bold text-center text-center">฿{p.price}</span></div>
+                                            <p className="text-slate-600 text-sm mb-8 font-light flex-grow text-left text-left">{p.sub}</p>
+                                            <button onClick={() => addToCart(p)} className="w-full py-4 rounded-2xl bg-sky-500 text-white font-bold hover:bg-sky-600 transition-all shadow-lg active:scale-95 text-center text-center">ใส่รถเข็น</button>
                                         </div>
                                     ))}
                                     {[...Array(4)].map((_, i) => (
-                                        <div key={i} className="bg-white/20 backdrop-blur-sm rounded-[3rem] p-8 border-2 border-dashed border-white/40 flex flex-col items-center justify-center text-center opacity-60 min-h-[400px] text-center">
-                                            <div className="bg-white/80 p-6 rounded-full shadow-sm text-sky-300 transition-transform hover:scale-110 cursor-pointer mx-auto">
-                                                <Icon name="Plus" size={32} />
+                                        <div key={i} className="bg-white/20 backdrop-blur-sm rounded-[3rem] p-8 border-2 border-dashed border-white/40 flex flex-col items-center justify-center text-center opacity-60 min-h-[400px] text-center text-center">
+                                            <div className="bg-white/80 p-6 rounded-full shadow-sm text-sky-300 transition-transform hover:scale-110 cursor-pointer text-center text-center">
+                                                <Icon name="Plus" size={32} className="text-center text-center" />
                                             </div>
-                                            <p className="mt-4 text-[12px] font-bold text-sky-400 uppercase tracking-widest">New Design Coming Soon</p>
+                                            <p className="mt-4 text-[12px] font-bold text-sky-400 uppercase tracking-widest text-center text-center">New Design Coming Soon</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         ) : view === 'cart' ? (
-                            <div className="max-w-2xl mx-auto px-6 min-h-[60vh] animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
-                                {/* Button Text: "กลับไปเลือกซื้อต่อ" */}
-                                <button onClick={() => { setView('home'); window.scrollTo(0,0); }} className="mb-12 flex items-center text-sky-700 font-medium hover:translate-x-[-4px] transition-all mx-auto">
-                                    <Icon name="ArrowLeft" size={18} className="mr-2" /> กลับไปเลือกซื้อต่อ
+                            <div className="max-w-2xl mx-auto px-6 min-h-[60vh] animate-in fade-in slide-in-from-bottom-4 duration-500 text-center text-center">
+                                <button onClick={() => { setView('home'); window.scrollTo(0,0); }} className="mb-12 flex items-center text-sky-700 font-medium hover:translate-x-[-4px] transition-all mx-auto text-center text-center">
+                                    <Icon name="ArrowLeft" size={18} className="mr-2 text-center text-center" /> กลับไปเลือกซื้อต่อ
                                 </button>
-                                <h2 className="text-4xl font-light mb-12 font-serif italic text-center text-slate-800">My Shopping Bag</h2>
+                                <h2 className="text-4xl font-light mb-12 font-serif italic text-center text-slate-800 text-center text-center">My Shopping Bag</h2>
                                 {cart.length === 0 ? (
-                                    <div className="text-center py-24 bg-white/30 backdrop-blur-md rounded-[4rem] border border-dashed border-white/60 flex flex-col items-center mx-auto">
-                                        <Icon name="Cloud" size={64} className="text-sky-300 mb-6 mx-auto text-center" />
-                                        {/* Text: "ตะกร้ายังว่างเปล่า..." */}
-                                        <p className="text-slate-600 font-light italic text-lg text-center">ตะกร้ายังว่างเปล่า...</p>
+                                    <div className="text-center py-24 bg-white/30 backdrop-blur-md rounded-[4rem] border border-dashed border-white/60 flex flex-col items-center mx-auto text-center text-center">
+                                        <Icon name="Cloud" size={64} className="text-sky-300 mb-6 mx-auto text-center text-center" />
+                                        <p className="text-slate-600 font-light italic text-lg text-center text-center">ตะกร้ายังว่างเปล่า...</p>
                                     </div>
                                 ) : (
-                                    <div className="space-y-4">
+                                    <div className="space-y-4 text-center text-center">
                                         {cart.map(item => (
-                                            <div key={item.id} className="flex items-center justify-between p-6 bg-white/70 backdrop-blur-md rounded-[2.5rem] border border-white/50 shadow-sm text-left">
-                                                <div className="flex items-center space-x-6 text-left">
-                                                    <div className={`w-16 h-16 rounded-2xl bg-white/40 flex items-center justify-center text-sky-400 shrink-0`}><Icon name="ImageIcon" size={24} /></div>
-                                                    <div><p className="font-medium text-slate-800 text-lg">{item.name}</p><p className="text-sky-600 font-serif italic font-bold">฿{item.price}</p></div>
+                                            <div key={item.id} className="flex items-center justify-between p-6 bg-white/70 backdrop-blur-md rounded-[2.5rem] border border-white/50 shadow-sm text-left text-left">
+                                                <div className="flex items-center space-x-6 text-left text-left">
+                                                    <div className={`w-16 h-16 rounded-2xl bg-white/40 flex items-center justify-center text-sky-400 shrink-0 text-center text-center`}><Icon name="ImageIcon" size={24} className="text-center text-center" /></div>
+                                                    <div className="text-left text-left"><p className="font-medium text-slate-800 text-lg text-left text-left">{item.name}</p><p className="text-sky-600 font-serif italic font-bold text-left text-left">฿{item.price}</p></div>
                                                 </div>
-                                                <button onClick={() => removeFromCart(item.id)} className="p-3 text-slate-300 hover:text-rose-500 transition-all"><Icon name="Trash2" size={20} /></button>
+                                                <button onClick={() => removeFromCart(item.id)} className="p-3 text-slate-300 hover:text-rose-500 transition-all text-center text-center"><Icon name="Trash2" size={20} className="text-center text-center" /></button>
                                             </div>
                                         ))}
-                                        <div className="mt-16 pt-12 border-t border-white/40 flex justify-between items-end text-left"><span className="text-sky-500 font-bold uppercase text-[11px] tracking-widest text-left text-left">Grand Total</span><span className="text-6xl font-serif italic text-sky-600 tracking-tighter drop-shadow-sm text-center">฿{totalPrice}</span></div>
-                                        {/* Button Text: "ชำระเงิน" */}
-                                        <button onClick={() => { setView('checkout'); window.scrollTo(0,0); }} className="w-full bg-sky-500 text-white py-7 rounded-[2.5rem] text-xl font-bold shadow-2xl hover:bg-sky-600 transition-all mt-8 active:scale-95 text-center">ชำระเงิน</button>
+                                        <div className="mt-16 pt-12 border-t border-white/40 flex justify-between items-end text-left text-left"><span className="text-sky-500 font-bold uppercase text-[11px] tracking-widest text-left text-left">Grand Total</span><span className="text-6xl font-serif italic text-sky-600 tracking-tighter drop-shadow-sm text-center text-center">฿{totalPrice}</span></div>
+                                        <button onClick={() => { setView('checkout'); window.scrollTo(0,0); }} className="w-full bg-sky-500 text-white py-7 rounded-[2.5rem] text-xl font-bold shadow-2xl hover:bg-sky-600 transition-all mt-8 active:scale-95 text-center text-center">ชำระเงิน</button>
                                     </div>
                                 )}
                             </div>
                         ) : (
-                            <div className="max-w-4xl mx-auto px-6 animate-in fade-in duration-700 min-h-[70vh] flex flex-col items-center justify-center text-center">
-                                <button onClick={() => { setView('cart'); window.scrollTo(0,0); }} className="mb-12 flex items-center text-sky-600 font-bold self-start hover:translate-x-[-2px] transition-transform mx-auto">
-                                    <Icon name="ArrowLeft" size={16} className="mr-1" /> กลับไปตะกร้า
+                            <div className="max-w-4xl mx-auto px-6 animate-in fade-in duration-700 min-h-[70vh] flex flex-col items-center justify-center text-center text-center">
+                                <button onClick={() => { setView('cart'); window.scrollTo(0,0); }} className="mb-12 flex items-center text-sky-600 font-bold self-start hover:translate-x-[-2px] transition-transform mx-auto text-center text-center">
+                                    <Icon name="ArrowLeft" size={16} className="mr-1 text-center text-center" /> กลับไปตะกร้า
                                 </button>
-                                <div className="bg-white/70 backdrop-blur-xl rounded-[4rem] p-12 md:p-16 flex flex-col items-center border border-white/50 shadow-2xl w-full max-w-2xl relative overflow-hidden mx-auto text-center">
-                                    <h3 className="text-3xl font-light mb-8 italic font-serif text-slate-800 text-center">Payment Summary</h3>
+                                <div className="bg-white/70 backdrop-blur-xl rounded-[4rem] p-12 md:p-16 flex flex-col items-center border border-white/50 shadow-2xl w-full max-w-2xl relative overflow-hidden mx-auto text-center text-center">
+                                    <h3 className="text-3xl font-light mb-8 italic font-serif text-slate-800 text-center text-center">Payment Summary</h3>
                                     
-                                    <div className="bg-white p-6 rounded-[3.5rem] shadow-2xl mb-10 border border-white transform hover:scale-105 transition-transform mx-auto text-center">
+                                    <div className="bg-white p-6 rounded-[3.5rem] shadow-2xl mb-10 border border-white transform hover:scale-105 transition-transform mx-auto text-center text-center">
                                         <div 
-                                            className="w-64 h-64 bg-white rounded-[2.5rem] flex items-center justify-center relative overflow-hidden cursor-zoom-in"
+                                            className="w-64 h-64 bg-white rounded-[2.5rem] flex items-center justify-center relative overflow-hidden cursor-zoom-in text-center text-center"
                                             onClick={() => setIsQrZoomed(true)}
                                             title="คลิกเพื่อขยายรูปค่ะ"
                                         >
-                                            {/* Note: .jpg as per your actual file extension */}
-                                            <SafeImage src="qr-payment.jpg" alt="PromptPay" className="absolute inset-0 w-full h-full object-contain" />
+                                            {/* Previews use .jpg to match your folder */}
+                                            <SafeImage src="qr-payment.jpg" alt="PromptPay" className="absolute inset-0 w-full h-full object-contain text-center text-center" />
                                         </div>
                                     </div>
 
-                                    {/* Text: "ยอดชำระเงินทั้งหมด" */}
-                                    <p className="text-[12px] text-sky-600 uppercase mb-2 font-bold tracking-widest text-center">ยอดชำระเงินทั้งหมด</p>
-                                    <p className="text-7xl font-serif italic text-sky-600 tracking-tighter mb-6 text-center">฿{totalPrice}</p>
-                                    <div className="bg-sky-50/50 px-8 py-4 rounded-full mb-10 border border-sky-100/50 text-center mx-auto"><p className="text-[14px] text-slate-600 font-light italic leading-relaxed text-center text-center">ชำระเงินแล้วแจ้งสลิปและรายละเอียดทางไลน์ได้เลยค่ะ</p></div>
-                                    {/* Button Text: "แจ้งสลิปและแจ้งรายละเอียด" */}
-                                    <a href="https://lin.ee/O1Av0DE" target="_blank" className="w-full bg-[#06C755] text-white py-6 rounded-[2.5rem] text-xl font-bold shadow-xl hover:bg-[#05b34c] transition-all active:scale-95 flex items-center justify-center space-x-3 text-center">
-                                        <Icon name="MessageSquare" size={24} className="fill-current" /><span>แจ้งสลิปและแจ้งรายละเอียด</span>
+                                    <p className="text-[12px] text-sky-600 uppercase mb-2 font-bold tracking-widest text-center text-center">ยอดชำระเงินทั้งหมด</p>
+                                    <p className="text-7xl font-serif italic text-sky-600 tracking-tighter mb-6 text-center text-center">฿{totalPrice}</p>
+                                    <div className="bg-sky-50/50 px-8 py-4 rounded-full mb-10 border border-sky-100/50 text-center mx-auto text-center text-center"><p className="text-[14px] text-slate-600 font-light italic leading-relaxed text-center text-center">ชำระเงินแล้วแจ้งสลิปและรายละเอียดทางไลน์ได้เลยค่ะ</p></div>
+                                    <a href="https://lin.ee/O1Av0DE" target="_blank" className="w-full bg-[#06C755] text-white py-6 rounded-[2.5rem] text-xl font-bold shadow-xl hover:bg-[#05b34c] transition-all active:scale-95 flex items-center justify-center space-x-3 text-center text-center">
+                                        <Icon name="MessageSquare" size={24} className="fill-current text-center text-center" /><span>แจ้งสลิปและแจ้งรายละเอียด</span>
                                     </a>
                                 </div>
                             </div>
                         )}
                     </main>
 
-                    {/* --- Enlarged QR Modal (ADJUSTED SIZE: Extra Large as requested) --- */}
                     {isQrZoomed && (
-                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-2xl animate-in fade-in duration-300 text-center" onClick={() => setIsQrZoomed(false)}>
-                            <div className="relative bg-white p-6 rounded-[3rem] shadow-2xl max-w-[95vw] w-full md:max-w-2xl flex flex-col items-center animate-in zoom-in-95 duration-300 text-center" onClick={e => e.stopPropagation()}>
-                                <button onClick={() => setIsQrZoomed(false)} className="absolute -top-4 -right-4 bg-white p-4 rounded-full text-slate-400 shadow-2xl hover:text-sky-500 transition-all hover:rotate-90 z-20 border border-sky-100">
-                                    <Icon name="X" size={28} />
+                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-2xl animate-in fade-in duration-300 text-center text-center" onClick={() => setIsQrZoomed(false)}>
+                            <div className="relative bg-white p-6 rounded-[3rem] shadow-2xl max-w-[95vw] w-full md:max-w-2xl flex flex-col items-center animate-in zoom-in-95 duration-300 text-center text-center" onClick={e => e.stopPropagation()}>
+                                <button onClick={() => setIsQrZoomed(false)} className="absolute -top-4 -right-4 bg-white p-4 rounded-full text-slate-400 shadow-2xl hover:text-sky-500 transition-all hover:rotate-90 z-20 border border-sky-100 text-center text-center">
+                                    <Icon name="X" size={28} className="text-center text-center" />
                                 </button>
-                                <div className="relative overflow-hidden rounded-[1.5rem] flex items-center justify-center w-full">
-                                    {/* Note: .jpg extension */}
-                                    <SafeImage src="qr-payment.jpg" alt="Enlarged PromptPay" className="w-full h-auto max-h-[80vh] block object-contain" />
+                                <div className="relative overflow-hidden rounded-[1.5rem] flex items-center justify-center w-full text-center text-center">
+                                    <SafeImage src="qr-payment.jpg" alt="Enlarged PromptPay" className="w-full h-auto max-h-[80vh] block object-contain text-center text-center" />
                                 </div>
-                                <div className="mt-8 px-12 py-4 bg-sky-50 rounded-full border border-sky-100 text-center">
-                                    <p className="text-sky-600 font-bold italic text-base">สแกนชำระเงินได้เลยนะคะ ✨</p>
+                                <div className="mt-8 px-12 py-4 bg-sky-50 rounded-full border border-sky-100 text-center text-center">
+                                    <p className="text-sky-600 font-bold italic text-base text-center text-center">สแกนชำระเงินได้เลยนะคะ ✨</p>
                                 </div>
                             </div>
                         </div>
                     )}
 
                     {modalProduct && (
-                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 text-center">
-                            <div className="absolute inset-0 bg-slate-900/15 backdrop-blur-md text-center" onClick={() => setModalProduct(null)}></div>
-                            <div className="bg-white/95 backdrop-blur-2xl rounded-[3.5rem] w-full max-w-4xl relative overflow-hidden shadow-2xl border border-white/50 flex flex-col md:flex-row animate-in zoom-in-95 duration-200 text-center">
-                                <div className="w-full md:w-1/2 min-h-[350px] flex items-center justify-center border-b md:border-b-0 md:border-r border-white/50 bg-sky-50/50 relative overflow-hidden shrink-0 text-center">
-                                    <SafeImage src={modalProduct.image} alt={modalProduct.name} className="absolute inset-0 w-full h-full object-cover" />
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-center"><span className="text-sky-50/20 font-serif italic text-4xl tracking-widest transform -rotate-12 opacity-30 select-none uppercase">Sample Design</span></div>
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 text-center text-center">
+                            <div className="absolute inset-0 bg-slate-900/15 backdrop-blur-md text-center text-center" onClick={() => setModalProduct(null)}></div>
+                            <div className="bg-white/95 backdrop-blur-2xl rounded-[3.5rem] w-full max-w-4xl relative overflow-hidden shadow-2xl border border-white/50 flex flex-col md:flex-row animate-in zoom-in-95 duration-200 text-center text-center">
+                                <div className="w-full md:w-1/2 min-h-[350px] flex items-center justify-center border-b md:border-b-0 md:border-r border-white/50 bg-sky-50/50 relative overflow-hidden shrink-0 text-center text-center">
+                                    <SafeImage src={modalProduct.image} alt={modalProduct.name} className="absolute inset-0 w-full h-full object-cover text-center text-center" />
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-center text-center"><span className="text-sky-50/20 font-serif italic text-4xl tracking-widest transform -rotate-12 opacity-30 select-none uppercase text-center text-center">Sample Design</span></div>
                                 </div>
-                                <div className="w-full md:w-1/2 p-12 flex flex-col text-left relative overflow-y-auto text-left">
-                                    <button onClick={() => setModalProduct(null)} className="absolute top-8 right-8 p-2 bg-white/80 hover:bg-sky-50 rounded-full text-sky-400 shadow-sm transition-all hover:rotate-90 z-10 text-center"><Icon name="X" size={24} /></button>
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h4 className="text-4xl font-medium text-slate-800 tracking-tight text-left">{modalProduct.name}</h4>
-                                        <div className="text-right shrink-0">
-                                            <p className="text-[11px] text-sky-500 font-bold uppercase tracking-widest mb-0">ราคาเริ่มต้น</p>
-                                            <p className="text-4xl font-serif italic text-sky-500 font-bold tracking-tighter text-right">฿{modalProduct.price}</p>
+                                <div className="w-full md:w-1/2 p-12 flex flex-col text-left relative overflow-y-auto text-left text-left">
+                                    <button onClick={() => setModalProduct(null)} className="absolute top-8 right-8 p-2 bg-white/80 hover:bg-sky-50 rounded-full text-sky-400 shadow-sm transition-all hover:rotate-90 z-10 text-center text-center"><Icon name="X" size={24} className="text-center text-center" /></button>
+                                    <div className="flex justify-between items-start mb-2 text-left text-left">
+                                        <h4 className="text-4xl font-medium text-slate-800 tracking-tight text-left text-left">{modalProduct.name}</h4>
+                                        <div className="text-right shrink-0 text-right text-right">
+                                            <p className="text-[11px] text-sky-500 font-bold uppercase tracking-widest mb-0 text-right text-right">ราคาเริ่มต้น</p>
+                                            <p className="text-4xl font-serif italic text-sky-500 font-bold tracking-tighter text-right text-right">฿{modalProduct.price}</p>
                                         </div>
                                     </div>
-                                    <p className="text-slate-500 text-[15px] font-light mb-8 leading-relaxed italic text-left">{modalProduct.sub}</p>
-                                    <div className="border-l-4 border-sky-300 bg-sky-50/50 p-7 rounded-r-[2rem] border-y border-r border-sky-100/50 mb-10 text-left">
-                                        <p className="text-slate-600 text-[14px] leading-relaxed font-light text-left">{modalProduct.details}</p>
+                                    <p className="text-slate-500 text-[15px] font-light mb-8 leading-relaxed italic text-left text-left">{modalProduct.sub}</p>
+                                    <div className="border-l-4 border-sky-300 bg-sky-50/50 p-7 rounded-r-[2rem] border-y border-r border-sky-100/50 mb-10 text-left text-left">
+                                        <p className="text-slate-600 text-[14px] leading-relaxed font-light text-left text-left">{modalProduct.details}</p>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-3 mb-12">
-                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left">
-                                            <Icon name="Sparkles" size={14} className="text-sky-400 mr-2 shrink-0" />
-                                            <span className="text-left leading-tight">แก้ไขชื่อ/แบรนด์ได้</span>
+                                    <div className="grid grid-cols-2 gap-3 mb-12 text-left text-left">
+                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left text-left">
+                                            <Icon name="Sparkles" size={14} className="text-sky-400 mr-2 shrink-0 text-left text-left" />
+                                            <span className="text-left text-left leading-tight">แก้ไขชื่อ/แบรนด์ได้</span>
                                         </div>
-                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left">
-                                            <Icon name="ImageIcon" size={14} className="text-sky-400 mr-2 shrink-0" />
-                                            <span className="text-left leading-tight">ส่งไฟล์ PNG พื้นหลังใส</span>
+                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left text-left">
+                                            <Icon name="ImageIcon" size={14} className="text-sky-400 mr-2 shrink-0 text-left text-left" />
+                                            {/* Text confirms PNG delivery */}
+                                            <span className="text-left text-left leading-tight">ส่งไฟล์ PNG พื้นหลังใส</span>
                                         </div>
-                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left">
-                                            <Icon name="CheckCircle2" size={14} className="text-sky-400 mr-2 shrink-0" />
-                                            <span className="text-left leading-tight">คมชัดไม่แตกแน่นอน</span>
+                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left text-left">
+                                            <Icon name="CheckCircle2" size={14} className="text-sky-400 mr-2 shrink-0 text-left text-left" />
+                                            <span className="text-left text-left leading-tight">คมชัดไม่แตกแน่นอน</span>
                                         </div>
-                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left">
-                                            <Icon name="Clock" size={14} className="text-sky-400 mr-2 shrink-0" />
-                                            <span className="leading-tight text-[11px] text-left">แก้ไขได้ 1 ครั้งภายใน 24 ชม. ที่ส่งงานค่ะ</span>
+                                        <div className="flex items-center text-[12px] text-slate-600 bg-sky-100/40 py-4 px-5 rounded-2xl border border-sky-200/30 text-left text-left">
+                                            <Icon name="Clock" size={14} className="text-sky-400 mr-2 shrink-0 text-left text-left" />
+                                            <span className="leading-tight text-[11px] text-left text-left">แก้ไขได้ 1 ครั้งภายใน 24 ชม. ที่ส่งงานค่ะ</span>
                                         </div>
                                     </div>
-                                    {/* Button Text: "ใส่รถเข็น" */}
-                                    <button onClick={() => addToCart(modalProduct)} className="w-full bg-sky-500 text-white py-6 rounded-[2rem] font-bold shadow-xl hover:bg-sky-600 transition-all active:scale-95 text-lg text-center">ใส่รถเข็น</button>
+                                    <button onClick={() => addToCart(modalProduct)} className="w-full bg-sky-500 text-white py-6 rounded-[2rem] font-bold shadow-xl hover:bg-sky-600 transition-all active:scale-95 text-lg text-center text-center">ใส่รถเข็น</button>
                                 </div>
                             </div>
                         </div>
                     )}
 
                     {toast && (
-                        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] bg-slate-800/90 backdrop-blur-md text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center space-x-3 border border-white/10 shadow-sky-200 animate-in slide-in-from-bottom-8 text-center">
-                            <Icon name="Sparkles" size={18} className="text-white shrink-0 text-center" />
-                            <span className="text-sm font-medium text-center">{toast}</span>
+                        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] bg-slate-800/90 backdrop-blur-md text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center space-x-3 border border-white/10 shadow-sky-200 animate-in slide-in-from-bottom-8 text-center text-center">
+                            <Icon name="Sparkles" size={18} className="text-white shrink-0 text-center text-center" />
+                            <span className="text-sm font-medium text-center text-center">{toast}</span>
                         </div>
                     )}
 
-                    <footer className="py-24 border-t border-white/40 text-center flex flex-col items-center relative z-10 mx-auto text-center">
-                        <div className="bg-white/60 backdrop-blur-md p-4 rounded-2xl mb-6 text-sky-500 shadow-sm border border-white/50 mx-auto text-center"><Icon name="Cloud" size={32} /></div>
-                        <p className="text-sky-600/70 text-[11px] uppercase tracking-[0.4em] font-bold text-center mx-auto text-center">© 2024 Sweetiepie Shop | Handcrafted With Love ✨</p>
+                    <footer className="py-24 border-t border-white/40 text-center flex flex-col items-center relative z-10 mx-auto text-center text-center">
+                        <div className="bg-white/60 backdrop-blur-md p-4 rounded-2xl mb-6 text-sky-500 shadow-sm border border-white/50 mx-auto text-center text-center"><Icon name="Cloud" size={32} className="text-center text-center" /></div>
+                        <p className="text-sky-600/70 text-[11px] uppercase tracking-[0.4em] font-bold text-center mx-auto text-center text-center">© 2024 Sweetiepie Shop | Handcrafted With Love ✨</p>
                     </footer>
                 </div>
             );
